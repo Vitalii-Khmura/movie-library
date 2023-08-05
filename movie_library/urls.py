@@ -6,7 +6,7 @@ from movie_library import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("movie.urls", namespace="movie"))
+    path("", include("movie.urls", namespace="movie")),
 ]
 
 if settings.DEBUG:
