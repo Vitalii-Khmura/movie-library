@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load query_transform %}
 {% load static %}
 
 {% block content %}
@@ -54,46 +55,77 @@
   </section>
 
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
-
-
       <section class="py-3">
         <div class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h5 class="mb-5">Movie</h5>
+              <h5 class="mb-5">Filters</h5>
             </div>
           </div>
         <!-- block -->
             <div class="row">
+              <form class="dropdown col-lg-4">
+                  <div class="card-body">
+                    <div class="input-group input-group-dynamic mb-4">
+                        <input class="form-control drop-button" type="button" id="dropdownMenuButton1" value="--- Click to choose genre ---" data-bs-toggle="dropdown" aria-expanded="false">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          {% for genre in get_genres %}
+                            <li><a class="dropdown-item" href="?genres={{ genre.name }}">{{ genre.name }}</a></li>
+                          {% endfor %}
+                        </ul>
 
-            </div>
-            <div class="row">
-              {% for movie in movie_list %}
-                <div class="col-lg-3 col-sm-6">
-                  <div class="card card-plain">
-                    <div class="card-header p-0 position-relative poster-img">
-                      <a href="#"
-                          class="d-block blur-shadow-image poster-img"
-                      >
-                        <img
-                             src="{{ movie.poster.url }}"
-                             alt="img-blur-shadow"
-                             class="img-fluid shadow border-radius-lg "
-                             loading="lazy"
-                        >
-                      </a>
-                      <h6 style="text-align: center">
-                        <a href="javascript:;" class="text-dark font-weight-bold">{{ movie.title }}</a>
-                      </h6>
                     </div>
                   </div>
-
-                </div>
-              {% endfor %}
-
+                </form>
+              <form class="col-lg-8" role="form" id="contact-form" method="get">
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="input-group input-group-dynamic mb-4">
+                          {{ search_form }}
+                          <button
+                              type="submit"
+                              style="border: none; background-color: rgba(255,255,255,0.12)">
+                            <img src="{% static 'img/icons8-search.svg' %}" alt="">
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </form>
             </div>
+            <div class="row">
+            <h5>Movie</h5>
+            </div>
+            <div class="row">
+               {% for movie in movie_list %}
+                  <div class="card-group col-lg-3 col-md-6 my-3">
+                    <div class="card" data-animation="true">
+                      <div class="card-header p-0 position-relative mt-n4 z-index-2">
+                        <a href="#" class="d-block blur-shadow-image">
+                          <img src="{{ movie.poster.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                        </a>
+                      </div>
+                      <div class="card-body text-center">
+                        <div class="d-flex mt-n6">
+                          <p class="mx-auto">Click to read info</p>
+                        </div>
+                        <h5 class="font-weight-normal mt-3">
+                          <a href="javascript:;">{{ movie.title }}</a>
+                        </h5>
+                      </div>
+                      <hr class="dark horizontal my-0">
+                      <div class="card-footer d-flex">
+                        <p class="font-weight-normal my-auto">{{movie.year}}</p>
+                        <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">place</i>
+                        <p class="text-sm my-auto"> {{ movie.country}}</p>
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %}
+            </div>
+
           </div>
       </section>
     </div>
+
   </div>
 {% endblock %}
