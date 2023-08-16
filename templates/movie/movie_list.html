@@ -58,8 +58,8 @@
       <section class="py-3">
         <div class="container">
           <div class="row">
+            <h4 class="mb-5 text-center">Filters</h4>
             <div class="col-lg-6">
-              <h5 class="mb-5">Filters</h5>
             </div>
           </div>
         <!-- block -->
@@ -93,14 +93,14 @@
                 </form>
             </div>
             <div class="row">
-            <h5>Movie</h5>
+            <h4 class="text-center mb-4">Movies</h4>
             </div>
             <div class="row">
                {% for movie in movie_list %}
                   <div class="card-group col-lg-3 col-md-6 my-3">
                     <div class="card" data-animation="true">
                       <div class="card-header p-0 position-relative mt-n4 z-index-2">
-                        <a href="#" class="d-block blur-shadow-image">
+                        <a href="{% url 'movie:movie-detail' pk=movie.id %}" class="d-block blur-shadow-image">
                           <img src="{{ movie.poster.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                         </a>
                       </div>
@@ -109,7 +109,7 @@
                           <p class="mx-auto">Click to read info</p>
                         </div>
                         <h5 class="font-weight-normal mt-3">
-                          <a href="javascript:;">{{ movie.title }}</a>
+                          <a href="{% url 'movie:movie-detail' pk=movie.id %}">{{ movie.title }}</a>
                         </h5>
                       </div>
                       <hr class="dark horizontal my-0">

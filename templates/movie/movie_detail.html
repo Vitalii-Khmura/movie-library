@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <header class="header-2">
+    <div class="page-header min-vh-75 relative" style="background-image: url('{% static 'img/back.jpeg' %}')">
+    <span class="mask bg-gradient-primary opacity-4"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 text-center mx-auto">
+          <h1 class="text-white pt-3 mt-n5">{{ movie.title}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  </header>
+
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-7 mt-n6">
+  <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
+    <section class="pt-6 pb-2">
+      <div class="container card card-frame">
+        <div class="row card-body mx-md-auto">
+          <div class="col-lg-4">
+            <img class="img-fluid rounded" src="{{ movie.poster.url}}" alt="">
+          </div>
+          <div class="col-lg-8">
+            <p class=""><strong>Title: </strong>{{ movie.title}}</p>
+            <p><strong>Tagline: </strong>{{ movie.tagline}}</p>
+            {% for director in movie.directors.all %}
+              <p><strong>Directors: </strong>
+                {{ director.first_name}} {{director.last_name }}
+              </p>
+            {% endfor %}
+            <p><strong>Country: </strong>{{ movie.country}}</p>
+            <p><strong>Budget: </strong>{{ movie.budget}}$</p>
+            <p><strong>Fess in world: </strong>{{ movie.fess_in_world}}$</p>
+            <p><strong>World Premier: </strong>{{ movie.world_premiere}}</p>
+            <p><strong>Year: </strong>{{ movie.year}}</p>
+            {% for genre in movie.genres.all %}
+              <p><strong>Genre: </strong>{{ genre.name}}</p>
+            {% endfor %}
+            <p><strong>Description: </strong>{{ movie.description }}</p>
+          </div>
+        </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="py-5">
+
+        <div class="container card card-frame">
+        <h3 class="text-center z-index-1 position-relative">Actors</h3>
+        <div class="row card-body">
+          <div class="owl-carousel owl-theme mx-auto">
+            {% for actor in movie.actors.all %}
+              <div class="item text-center">
+                <article class="avatar avatar-xxl rounded-circle">
+                  <img alt="Image placeholder" src="{{ actor.avatar.url }}">
+                </article>
+                <p>{{ actor.first_name }} {{ actor.last_name }}</p>
+
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+
+
+    </section>
+
+  </div>
+<!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
+
+
+
+
+{% endblock %}

@@ -37,3 +37,7 @@ class MovieListView(GetData, generic.ListView):
         if genres:
             return self.queryset.filter(genres__name=genres)
         return self.queryset
+
+
+class MovieDetailView(generic.DetailView):
+    model = Movie
