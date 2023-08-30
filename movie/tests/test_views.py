@@ -9,10 +9,7 @@ MOVIE_URL = reverse("movie:index")
 
 class TestMovieListView(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(
-            "test",
-            "password123"
-        )
+        self.user = get_user_model().objects.create_user("test", "password123")
         self.client.force_login(self.user)
 
     def test_retrieve_movie(self):
@@ -20,13 +17,13 @@ class TestMovieListView(TestCase):
             title="Avatar",
             tagline="Enter the world of Avatar.",
             description="A paraplegic Marine dispatched to the moon Pandora on a unique "
-                        "mission becomes torn between following his orders and protecting"
-                        " the world he feels is his home.",
+            "mission becomes torn between following his orders and protecting"
+            " the world he feels is his home.",
             year=2009,
             country="USA",
             fess_in_world=2923706026,
             budget=237000000,
-            poster="poster/Avatar_Qtaynzv.jpg"
+            poster="poster/Avatar_Qtaynzv.jpg",
         )
 
         res = self.client.get(MOVIE_URL)
@@ -38,10 +35,7 @@ class TestMovieListView(TestCase):
 
 class UserTest(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(
-            "test",
-            "password123"
-        )
+        self.user = get_user_model().objects.create_user("test", "password123")
         self.client.force_login(self.user)
 
     def test_create_user(self):
@@ -51,7 +45,7 @@ class UserTest(TestCase):
             "last_name": "last_test",
             "email": "test@test.com",
             "password1": "Pass123word",
-            "password2": "Pass123word"
+            "password2": "Pass123word",
         }
 
         self.client.post(reverse("register"), data=form_data)

@@ -7,7 +7,6 @@ from movie_library import settings
 
 
 class User(AbstractUser):
-
     def __str__(self):
         return f"{self.username}"
 
@@ -41,12 +40,10 @@ class Movie(models.Model):
     actors = models.ManyToManyField(Actor, related_name="film_actors")
     directors = models.ManyToManyField(Actor, related_name="film_directors")
     fess_in_world = models.PositiveSmallIntegerField(
-        default=0,
-        help_text="enter the dollar amount"
+        default=0, help_text="enter the dollar amount"
     )
     budget = models.PositiveSmallIntegerField(
-        default=0,
-        help_text="enter the dollar amount"
+        default=0, help_text="enter the dollar amount"
     )
     world_premiere = models.DateField(default=date.today)
 
@@ -55,7 +52,10 @@ class Movie(models.Model):
 
 
 class Reviews(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     text = models.TextField(max_length=4000)
 

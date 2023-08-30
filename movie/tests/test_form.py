@@ -11,7 +11,7 @@ class TestCreationForm(TestCase):
             "last_name": "last_test",
             "email": "test@test.com",
             "password1": "Pass123word",
-            "password2": "Pass123word"
+            "password2": "Pass123word",
         }
 
         form = RegistrationsForm(data=form_data)

@@ -1,6 +1,9 @@
-
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UsernameField,
+    UserCreationForm,
+)
 from django.forms import ModelForm, TextInput
 from django.utils.translation import gettext_lazy as _
 
@@ -12,20 +15,32 @@ class MovieSearchForm(forms.Form):
         required=False,
         label="",
         max_length=255,
-        widget=TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Search by title..."
-        })
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Search by title..."
+            }
+        ),
     )
 
 
 class LoginForm(AuthenticationForm):
-    username = UsernameField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={"class": "form-control"}
+        )
+    )
+
     password = forms.CharField(
         label="Password",
         strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "current-password", "class": "form-control"}),
-  )
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "current-password",
+                "class": "form-control"
+            }
+        ),
+    )
 
 
 class RegistrationsForm(UserCreationForm):
@@ -41,6 +56,8 @@ class RegistrationsForm(UserCreationForm):
         super().__init__(*args, **kwargs)
 
         for field in self.fields:
-            self.fields[field].widget.attrs.update({
-                'class': 'form-control'
-            })
+            self.fields[field].widget.attrs.update(
+                {
+                    "class": "form-control"
+                }
+            )

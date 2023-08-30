@@ -10,9 +10,13 @@ urlpatterns = [
     path("", include("movie.urls", namespace="movie")),
 
     # Accounts
-    path("accounts/login/", views.UserLoginView.as_view(), name='login'),
-    path('accounts/logout/', views.user_logout_view, name='logout'),
-    path('accounts/register/', views.RegistrationView.as_view(), name='register'),
+    path("accounts/login/", views.UserLoginView.as_view(), name="login"),
+    path("accounts/logout/", views.user_logout_view, name="logout"),
+    path(
+        "accounts/register/",
+        views.RegistrationView.as_view(),
+        name="register"
+    ),
 ]
 
 if settings.DEBUG:

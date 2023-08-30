@@ -9,7 +9,6 @@ from movie.models import Movie, Actor, Genre, User
 
 
 class GetData:
-
     @staticmethod
     def get_actors():
         return Actor.objects.all()
@@ -33,9 +32,7 @@ class MovieListView(LoginRequiredMixin, GetData, generic.ListView):
         context["get_genres"] = self.get_genres()
         context["get_actors"] = self.get_actors()
         context["film_title"] = title
-        context["search_form"] = MovieSearchForm(initial={
-            "title": title
-        })
+        context["search_form"] = MovieSearchForm(initial={"title": title})
 
         return context
 
@@ -59,12 +56,11 @@ class UserLoginView(views.LoginView):
 
 def user_logout_view(request):
     logout(request)
-    return redirect('/accounts/login/')
+    return redirect("/accounts/login/")
 
 
 class RegistrationView(generic.CreateView):
     model = User
     template_name = "registration/sign_up.html"
     form_class = RegistrationsForm
-    success_url = reverse_lazy('login')
-
+    success_url = reverse_lazy("login")
