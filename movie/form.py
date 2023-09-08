@@ -7,7 +7,7 @@ from django.contrib.auth.forms import (
 from django.forms import ModelForm, TextInput
 from django.utils.translation import gettext_lazy as _
 
-from movie.models import Movie, Genre, User
+from movie.models import Movie, Genre, User, Reviews
 
 
 class MovieSearchForm(forms.Form):
@@ -61,3 +61,9 @@ class RegistrationsForm(UserCreationForm):
                     "class": "form-control"
                 }
             )
+
+
+class  ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Reviews
+        fields = ("movie", "user", "text", )

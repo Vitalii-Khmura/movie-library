@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View, generic
 
-from movie.form import MovieSearchForm, LoginForm, RegistrationsForm
+from movie.form import MovieSearchForm, LoginForm, RegistrationsForm, ReviewForm
 from movie.models import Movie, Actor, Genre, User
 
 
@@ -64,3 +64,19 @@ class RegistrationView(generic.CreateView):
     template_name = "registration/sign_up.html"
     form_class = RegistrationsForm
     success_url = reverse_lazy("login")
+
+
+class AddReview(generic.View):
+    def post(self, request, pk):
+        form = ReviewForm(request.POST)
+        print(request.POST)
+        print(form.errors)
+        movie = Movie.objects.get(id=pk)
+        if request.user.is_authenticated:
+            if form.is_valid():
+                form.save(commit=False)
+                form.movie = movie
+                form.user = request.user
+                form.save()
+            return redirect(movie.get_absolute_url())
+        return reverse_lazy("login")

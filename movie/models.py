@@ -2,6 +2,7 @@ from datetime import date
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 from movie_library import settings
 
@@ -49,6 +50,9 @@ class Movie(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+    def get_absolute_url(self):
+        return reverse("movie:movie-detail", kwargs={"pk": self.id})
 
 
 class Reviews(models.Model):

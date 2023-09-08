@@ -69,14 +69,38 @@
           </div>
         </div>
       </div>
-
-
-
     </section>
-
+    <form action="{% url 'movie:add-review' pk=movie.id%}" method="post">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h5 class="text-center">Write review about this film</h5>
+          {% csrf_token %}
+           <div class="input-group input-group-dynamic mb-4">
+              <span class="input-group-text" id="basic-addon1"></span>
+              <input type="text" name="text" class="form-control" placeholder="Write here your review about film..." aria-label="Write here your review" aria-describedby="basic-addon1">
+              <input type="hidden" name="movie" value="{{ movie.id }}">
+              {% if user.is_authenticated %}
+                <input type="hidden" name="user" value="{{ user.id }}">
+              {% endif %}
+         </div>
+         <input class="btn btn-primary  mx-sm-auto" type="submit" value="Submit">
+        </div>
+      </div>
+    </form>
   </div>
-<!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
 
+  <div class="card card-frame mx-3 mx-md-7 mt-3 p-3">
+      <h5 class="text-center">Reviews</h5>
+      {% if movie.reviews_set.count > 0 %}
+        {% for review in movie.reviews_set.all %}
+          <h6>@{{ review.user.username }}</h6>
+          <p>{{ review.text }}</p>
+        {% endfor %}
+      {% else %}
+        <p>There are no reviews yet!</p>
+      {% endif %}
+    </div>
+<!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
 
 
 
