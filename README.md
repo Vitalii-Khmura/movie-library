@@ -26,6 +26,17 @@ Then you should create an ```.env``` file and enter in this file ```SECRET_KEY``
 
 All Environment variables that should be in .env file are specified in the .env_sample file
 
+Finally, perform the migration, write next command in terminal:
+
+```shell
+    python manage.py makemigrations
+    python manage.py migrate
+```
+
+After loading data from fixture you can use following superuser (or create another one by yourself):
+* Login: ```test_user```
+* Password:```123456```
+
 ## Features
 
 * Authentication functionality for User
