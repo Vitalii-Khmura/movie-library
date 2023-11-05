@@ -2,7 +2,7 @@ from django.contrib.auth import views, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views import View, generic
+from django.views import generic
 
 from movie.form import MovieSearchForm, LoginForm, RegistrationsForm, ReviewForm
 from movie.models import Movie, Actor, Genre, User
