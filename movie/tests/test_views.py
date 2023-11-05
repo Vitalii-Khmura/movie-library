@@ -5,6 +5,18 @@ from django.urls import reverse
 from movie.models import Movie
 
 MOVIE_URL = reverse("movie:index")
+MOVIE = {
+    "title": "Avatar",
+    "tagline": "Enter the world of Avatar.",
+    "description": "A paraplegic Marine dispatched to the moon Pandora on a unique "
+                   "mission becomes torn between following his orders and protecting"
+                   " the world he feels is his home.",
+    "year": 2009,
+    "country": "USA",
+    "fess_in_world": 2923706026,
+    "budget": 237000000,
+    "poster": "poster/Avatar_Qtaynzv.jpg",
+}
 
 
 class TestMovieListView(TestCase):
@@ -13,24 +25,40 @@ class TestMovieListView(TestCase):
         self.client.force_login(self.user)
 
     def test_retrieve_movie(self):
-        Movie.objects.create(
-            title="Avatar",
-            tagline="Enter the world of Avatar.",
-            description="A paraplegic Marine dispatched to the moon Pandora on a unique "
-            "mission becomes torn between following his orders and protecting"
-            " the world he feels is his home.",
-            year=2009,
-            country="USA",
-            fess_in_world=2923706026,
-            budget=237000000,
-            poster="poster/Avatar_Qtaynzv.jpg",
-        )
+        Movie.objects.create(**MOVIE)
 
         res = self.client.get(MOVIE_URL)
         movie = Movie.objects.all()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(list(res.context["movie_list"]), list(movie))
+
+
+class TestPrivateMovieList(TestCase):
+    def test_login_required(self):
+        response = self.client.get(MOVIE_URL)
+
+        self.assertNotEqual(response.status_code, 200)
+
+
+class TestMovieDetail(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user("test", "password123")
+        self.client.force_login(self.user)
+
+        self.movie = Movie.objects.create(**MOVIE)
+
+    def test_movie_detail(self):
+        res = self.client.get(
+            reverse(
+                "movie:movie-detail",
+                kwargs={"pk": self.movie.id}
+            )
+        )
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.context["movie"], self.movie)
+        self.assertTemplateUsed(res, "movie/movie_detail.html")
 
 
 class UserTest(TestCase):
