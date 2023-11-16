@@ -1,0 +1,15 @@
+
+
+<form class="dropdown col-lg-4">
+    <div class="card-body">
+      <div class="input-group input-group-dynamic mb-4">
+          <input class="form-control drop-button" type="button" id="dropdownMenuButton1" value="--- Click to choose genre ---" data-bs-toggle="dropdown" aria-expanded="false">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for genre in get_genres %}
+              <li><a class="dropdown-item" href="?genres={{ genre.name }}">{{ genre.name }}</a></li>
+            {% endfor %}
+          </ul>
+
+      </div>
+    </div>
+</form>
