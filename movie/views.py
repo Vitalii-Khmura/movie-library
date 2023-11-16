@@ -69,8 +69,6 @@ class RegistrationView(generic.CreateView):
 class AddReview(generic.View):
     def post(self, request, pk):
         form = ReviewForm(request.POST)
-        print(request.POST)
-        print(form.errors)
         movie = Movie.objects.get(id=pk)
         if request.user.is_authenticated:
             if form.is_valid():
