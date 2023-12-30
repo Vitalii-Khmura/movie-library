@@ -1,0 +1,251 @@
+[
+{
+    "model": "movie.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$gUebvjmUYmReVpJ0PLtH56$/5IMtrCV3tqdCCdRBi/5yDJojTwg1mysfP6m2fYLhBg=",
+        "last_login": "2023-11-02T20:11:24.583Z",
+        "is_superuser": true,
+        "username": "vitalii",
+        "first_name": "Vitalii",
+        "last_name": "Khmura",
+        "email": "vitalikkhmura13@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-07-22T12:36:59Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "movie.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Zq5RElpc6xIZ8ML3HoeCHN$Q8FoWn0tCHw3IvkMQlLvmu6s+BtAH9CF8BBVK0nNnUQ=",
+        "last_login": "2023-11-05T11:47:02.926Z",
+        "is_superuser": true,
+        "username": "test_user",
+        "first_name": "",
+        "last_name": "",
+        "email": "test@tess.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-11-05T11:46:07.162Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "movie.genre",
+    "pk": 3,
+    "fields": {
+        "name": "Action",
+        "description": "rnre"
+    }
+},
+{
+    "model": "movie.genre",
+    "pk": 4,
+    "fields": {
+        "name": "Fantasy",
+        "description": "asd"
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 4,
+    "fields": {
+        "avatar": "actors/brad_pitt.png",
+        "first_name": "brad",
+        "last_name": "pitt",
+        "age": 59
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 5,
+    "fields": {
+        "avatar": "actors/cillian_murphi.jpg",
+        "first_name": "cillian",
+        "last_name": "murphi",
+        "age": 53
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 6,
+    "fields": {
+        "avatar": "actors/Emili_blunt.jpg",
+        "first_name": "Emily",
+        "last_name": "Blunt",
+        "age": 40
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 7,
+    "fields": {
+        "avatar": "actors/Robert_Downey_jr_i8VVnHY.jpg",
+        "first_name": "Robert",
+        "last_name": "Downey Jr.",
+        "age": 58
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 8,
+    "fields": {
+        "avatar": "actors/Christopher_Nolan.jpg",
+        "first_name": "Christopher",
+        "last_name": "Nolan",
+        "age": 57
+    }
+},
+{
+    "model": "movie.actor",
+    "pk": 9,
+    "fields": {
+        "avatar": "actors/Matt_Damon.jpg",
+        "first_name": "Matt",
+        "last_name": "Damon",
+        "age": 52
+    }
+},
+{
+    "model": "movie.movie",
+    "pk": 13,
+    "fields": {
+        "title": "Batman",
+        "tagline": "Fear is a tool. When that light hits the sky, it�s not just a call. It�s a warning. For them.",
+        "description": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+        "poster": "poster/Batman_poster.jpg",
+        "year": 2022,
+        "country": "USA",
+        "fess_in_world": 0,
+        "budget": 0,
+        "world_premiere": "1982-01-01",
+        "genres": [
+            3
+        ],
+        "actors": [
+            4
+        ],
+        "directors": [
+            4
+        ]
+    }
+},
+{
+    "model": "movie.movie",
+    "pk": 14,
+    "fields": {
+        "title": "Openheimer",
+        "tagline": "ert",
+        "description": "ert",
+        "poster": "poster/Openheimer_poster.jpg",
+        "year": 0,
+        "country": "ert",
+        "fess_in_world": 0,
+        "budget": 0,
+        "world_premiere": "2023-07-24",
+        "genres": [
+            3
+        ],
+        "actors": [
+            4,
+            5,
+            6,
+            7,
+            9
+        ],
+        "directors": [
+            8
+        ]
+    }
+},
+{
+    "model": "movie.movie",
+    "pk": 15,
+    "fields": {
+        "title": "Avatar",
+        "tagline": "Enter the world of Avatar.",
+        "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+        "poster": "poster/Avatar_Qtaynzv.jpg",
+        "year": 2009,
+        "country": "USA",
+        "fess_in_world": 2923706026,
+        "budget": 237000000,
+        "world_premiere": "2009-01-01",
+        "genres": [
+            3,
+            4
+        ],
+        "actors": [
+            4
+        ],
+        "directors": [
+            4
+        ]
+    }
+},
+{
+    "model": "movie.movie",
+    "pk": 16,
+    "fields": {
+        "title": "Venom",
+        "tagline": "I`ll be back",
+        "description": "sadciowmaecgerfce;,fxgmkrfh;ewjklmferhgrnkl3wefmopjfq3'w;R",
+        "poster": "poster/Venom_poster.jpg",
+        "year": 2019,
+        "country": "USA",
+        "fess_in_world": 230000000,
+        "budget": 10000000,
+        "world_premiere": "2019-09-21",
+        "genres": [
+            4
+        ],
+        "actors": [
+            4
+        ],
+        "directors": [
+            4
+        ]
+    }
+},
+{
+    "model": "movie.reviews",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "movie": 14,
+        "text": "Very good film!"
+    }
+},
+{
+    "model": "movie.reviews",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "movie": 13,
+        "text": "Recommended"
+    }
+},
+{
+    "model": "movie.reviews",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "movie": 16,
+        "text": "movie 10 out of 10"
+    }
+},
+{
+    "model": "movie.reviews",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "movie": 13,
+        "text": "dasdfasf"
+    }
+}
+]

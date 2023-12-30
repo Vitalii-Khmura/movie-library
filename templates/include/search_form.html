@@ -1,0 +1,17 @@
+{% load static %}
+
+
+<form class="col-lg-8" role="form" id="contact-form" method="get">
+  <div class="card-body">
+    <div class="row">
+        <div class="input-group input-group-dynamic mb-4">
+          {{ search_form }}
+          <button
+              type="submit"
+              style="border: none; background-color: rgba(255,255,255,0.12)">
+            <img src="{% static 'img/icons8-search.svg' %}" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+</form>

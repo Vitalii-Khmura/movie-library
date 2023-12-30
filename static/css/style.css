@@ -1,0 +1,47 @@
+
+.poster-img {
+    display: block;
+	position: relative;
+}
+.poster-img:before {
+    background: rgba(0,0,0,0.2);
+}
+.poster-img:after {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3);
+    opacity: 0;
+    transition: opacity 0.4s linear;
+}
+.poster-img:hover:before,
+.poster-img:hover:after {
+    opacity: 5;
+}
+
+.drop {
+    text-align: center;
+    color: rgba(103,62,229,0.93);
+}
+
+.drop-button {
+    color: rgba(175,183,190,0.93);
+}
+
+.fa-facebook {
+    content: "\f39e";
+}
+
+
+.fa {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display,inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}

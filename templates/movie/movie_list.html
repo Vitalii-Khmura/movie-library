@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load query_transform %}
+{% load static %}
+
+{% block content %}
+  <!-- Header -->
+  <!-- -------- START HEADER 1 w/ text and image on right ------- -->
+  <header>
+    <div class="page-header min-vh-100" style="background-image: url({% static 'img/back.jpeg '%});" loading="lazy">
+      <span class="mask bg-gradient-dark opacity-5"></span>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+            <h1 class="text-white mb-4">Movie Library</h1>
+            <p class="text-white opacity-8 lead pe-5 me-5">You can find here all movie  </p>
+            <div class="buttons">
+              <a href="#content" type="button" class="btn btn-white mt-4">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- -------- END HEADER 1 w/ text and image on right ------- -->
+  <!--End Header -->
+
+
+
+  <div id="content" class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <section class="pt-3 pb-4" id="count-stats">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 mx-auto py-3">
+          <div class="row">
+            <div class="col-md-4 position-relative">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary"><span id="state1">{{ movie_list.count }}</span>+</h1>
+                <h5 class="mt-3">Number Movie</h5>
+              </div>
+              <hr class="vertical dark">
+            </div>
+            <div class="col-md-4 position-relative">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary"> <span id="state2">{{ get_actors.count }}</span>+</h1>
+                <h5 class="mt-3">Number Actors</h5>
+              </div>
+              <hr class="vertical dark">
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary" id="state3"><span id="state3">{{ get_genres.count }}</span>+</h1>
+                <h5 class="mt-3">Number Genres</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+      <section class="py-3">
+        <div class="container">
+          <div class="row">
+            <h4 class="mb-5 text-center">Filters</h4>
+            <div class="col-lg-6">
+            </div>
+          </div>
+        <!-- block -->
+            <div class="row">
+              {% include "include/filter_form.html" %}
+              {% include "include/search_form.html" %}
+            </div>
+            <div class="row">
+            <h4 class="text-center mb-4">Movies</h4>
+            </div>
+            <div class="row">
+               {% for movie in movie_list %}
+                  <div class="card-group col-lg-3 col-md-6 my-3">
+                    <div class="card" data-animation="true">
+                      <div class="card-header p-0 position-relative mt-n4 z-index-2">
+                        <a href="{% url 'movie:movie-detail' pk=movie.id %}" class="d-block blur-shadow-image">
+                          <img src="{{ movie.poster.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                        </a>
+                      </div>
+                      <div class="card-body text-center">
+                        <div class="d-flex mt-n6">
+                          <p class="mx-auto">Click to read info</p>
+                        </div>
+                        <h5 class="font-weight-normal mt-3">
+                          <a href="{% url 'movie:movie-detail' pk=movie.id %}">{{ movie.title }}</a>
+                        </h5>
+                      </div>
+                      <hr class="dark horizontal my-0">
+                      <div class="card-footer d-flex">
+                        <p class="font-weight-normal my-auto">{{movie.year}}</p>
+                        <i class="material-icons position-relative ms-auto text-lg me-1 my-auto">place</i>
+                        <p class="text-sm my-auto"> {{ movie.country}}</p>
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %}
+            </div>
+
+
+          </div>
+
+      </section>
+
+    </div>
+      {% block pagination %}
+        {% include 'include/pagination.html' %}
+      {% endblock %}
+  </div>
+{% endblock %}
