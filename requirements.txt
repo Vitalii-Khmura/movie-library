@@ -18,6 +18,7 @@ drf-spectacular==0.22.1
 flake8==5.0.4
 flake8-quotes==3.3.1
 flake8-variables-names==0.0.5
+gunicorn==21.2.0
 inflection==0.5.1
 iniconfig==2.0.0
 jsonschema==4.20.0
