@@ -6,7 +6,7 @@
   <!-- Header -->
   <!-- -------- START HEADER 1 w/ text and image on right ------- -->
   <header>
-    <div class="page-header min-vh-100" style="background-image: url({% static 'img/back.jpeg '%});" loading="lazy">
+    <div class="page-header min-vh-100" style="background-image: url({% static 'img/back.jpeg'%});" loading="lazy">
       <span class="mask bg-gradient-dark opacity-5"></span>
       <div class="container">
         <div class="row">
@@ -80,7 +80,7 @@
                     <div class="card" data-animation="true">
                       <div class="card-header p-0 position-relative mt-n4 z-index-2">
                         <a href="{% url 'movie:movie-detail' pk=movie.id %}" class="d-block blur-shadow-image">
-                          <img src="{{ movie.poster.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                          <img src="{{movie.poster.url}}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                         </a>
                       </div>
                       <div class="card-body text-center">
