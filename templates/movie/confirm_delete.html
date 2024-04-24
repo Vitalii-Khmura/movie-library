@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+   <header class="header-2">
+    <div class="page-header min-vh-75 relative" style="background-image: url('{% static 'img/back.jpeg' %}')">
+    <span class="mask bg-gradient-primary opacity-4"></span>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+              <h1 class="text-white mb-4">{{ movie.title}}</h1>
+              <p class="text-white opacity-8 lead pe-5 me-5">You can find here all movie  </p>
+              <div class="buttons">
+                <a href="#content" type="button" class="btn btn-white mt-4">Get started
+                </a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-7 mt-n6">
+  <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
+    <section class="pt-6 pb-2">
+      <div class="container card card-frame">
+        <div class="row card-body mx-md-auto">
+          <div  class="mx-auto">
+            <h3 style="margin-bottom: 20px;">Are you sure you want to remove the movie <em>{{ movie.title }}</em>?</h3>
+            <form id="content" action="" method="post" style="display: inline-block;">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <input type="submit" value="Yes" class="btn btn-danger" style="margin-right: 10px;">
+            </form>
+            <a href="{% url "movie:index" %}" class="btn btn-secondary" style="display: inline-block;">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

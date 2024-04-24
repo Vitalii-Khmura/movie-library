@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <header>
+    <div class="page-header min-vh-100" style="background-image: url({% static 'img/back.jpeg'%});" loading="lazy">
+      <span class="mask bg-gradient-dark opacity-5"></span>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+            <h1 class="text-white mb-4">Movie Library</h1>
+            <p class="text-white opacity-8 lead pe-5 me-5">Create Movie  </p>
+            <div class="buttons">
+              <a href="#content" type="button" class="btn btn-white mt-4">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<section>
+  <div id="content" class="container py-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+          <h3 class="text-center">Create Movie</h3>
+          <form role="form" id="movie-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="form-group">
+                <label for="id_title">Title</label>
+                <input type="text" class="form-control border" id="id_title" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="id_tagline">Tagline</label>
+                <input type="text" class="form-control border" id="id_tagline" name="tagline">
+            </div>
+
+            <div class="form-group">
+                <label for="id_description">Description</label>
+                <textarea class="form-control border" id="id_description" name="description" rows="4"></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="id_poster">Poster</label>
+                <input type="file" class="form-control-file border" id="id_poster" name="poster" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id_year">Release Year</label>
+                <input type="number" class="form-control border" id="id_year" name="year">
+            </div>
+
+            <div class="form-group">
+                <label for="id_country">Country</label>
+                <input type="text" class="form-control border" id="id_country" name="country">
+            </div>
+
+            <div class="form-group">
+                <label for="id_genres">Genres</label>
+                <select multiple class="form-control border" id="id_genres" name="genres">
+                    {% for genre in form.genres.field.choices %}
+                        <option value="{{ genre.0 }}">{{ genre.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="id_actors">Actors</label>
+                <select multiple class="form-control border" id="id_actors" name="actors">
+                    {% for actor in form.actors.field.choices %}
+                        <option value="{{ actor.0 }}">{{ actor.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="id_directors">Directors</label>
+                <select multiple class="form-control border" id="id_directors" name="directors">
+                    {% for director in form.directors.field.choices %}
+                        <option value="{{ director.0 }}">{{ director.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="id_fess_in_world">Fees in World</label>
+                <input type="number" class="form-control border" id="id_fess_in_world" name="fess_in_world">
+            </div>
+
+            <div class="form-group">
+                <label for="id_budget">Budget</label>
+                <input type="number" class="form-control border" id="id_budget" name="budget">
+            </div>
+
+            <div class="form-group">
+                <label for="id_world_premiere">World Premiere</label>
+                <input type="date" class="form-control border" id="id_world_premiere" name="world_premiere">
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 mt-3">
+                  <button type="submit" class="btn bg-gradient-dark w-100">Create Movie</button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+  {% include "include/footer.html"%}
+{% endblock %}

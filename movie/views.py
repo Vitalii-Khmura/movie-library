@@ -37,6 +37,7 @@ class MovieListView(LoginRequiredMixin, GetData, generic.ListView):
         context["get_genres"] = self.get_genres()
         context["get_actors"] = self.get_actors()
         context["film_title"] = title
+        context["movie"] = Movie.objects.all()
         context["search_form"] = MovieSearchForm(initial={"title": title})
 
         return context
@@ -51,8 +52,38 @@ class MovieListView(LoginRequiredMixin, GetData, generic.ListView):
         return self.queryset
 
 
-class MovieDetailView(generic.DetailView):
+class MovieDetailView(LoginRequiredMixin, generic.DetailView, GetData):
     model = Movie
+
+
+class MovieUpdateView(LoginRequiredMixin, GetData, generic.UpdateView):
+    model = Movie
+    fields = "__all__"
+
+    template_name = "movie/movie_update.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        title = self.request.GET.get("title", "")
+
+        context["get_genres"] = self.get_genres()
+        context["get_actors"] = self.get_actors()
+
+        return context
+
+
+class MovieCreateView(LoginRequiredMixin, GetData, generic.CreateView):
+    model = Movie
+    fields = "__all__"
+    success_url = reverse_lazy("movie:index")
+    template_name = "movie/movie_create.html"
+
+
+class MovieDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Movie
+    template_name = "movie/confirm_delete.html"
+    success_url = reverse_lazy("movie:index")
 
 
 class UserLoginView(views.LoginView):
