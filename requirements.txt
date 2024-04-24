@@ -57,3 +57,5 @@ tzdata==2023.3
 uritemplate==4.1.1
 wheel==0.42.0
 whitenoise==6.6.0
+crispy-bootstrap4
+django-crispy-forms
